@@ -1,0 +1,11 @@
+#!/bin/zsh -x
+
+if hash sudo
+then
+else
+    alias sudo='command'
+fi
+
+sudo `dirname $0`/upgrade-by-root $@
+
+`dirname $0`/git-all-pull
