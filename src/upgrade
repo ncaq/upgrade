@@ -8,4 +8,4 @@ fi
 
 sudo `dirname $0`/upgrade-by-root $@
 
-`dirname $0`/git-all-pull
+`dirname $0`/git-pull-all
