@@ -1,3 +1,3 @@
 #!/bin/zsh -x
 
-locate --regex "$(pwd).*/.git$" --null|parallel --no-notice --jobs 100% --null --keep-order 'test -d {} && cd {} && cd .. && echo {}: && git pull'
+locate --regex "$(pwd).*/.git$" --null|parallel --no-notice --jobs 100% --null --keep-order 'test -d {} && cd {}/.. && echo {}: && git -c color.diff=always pull'
