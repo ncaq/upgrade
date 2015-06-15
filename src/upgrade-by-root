@@ -17,11 +17,6 @@ else
         perl-cleaner --all
     fi
 
-    emerge @live-rebuild @module-rebuild @preserved-rebuild
-    emerge -uDN --with-bdeps y --backtrack=100 world
-fi
-
-if hash npm
-then
-    npm -g update
+    emerge --backtrack=100 @preserved-rebuild
+    emerge -uDN --backtrack=100 world
 fi
