@@ -1,22 +1,13 @@
 #!/bin/zsh -x
 
-emerge -uDN $@ world
-
-if `return $?`
+if emerge --backtrack=30 --with-bdeps=y -uDN $@ world
 then
 else
     revdep-rebuild
 
-    if hash haskell-updater
-    then
-        haskell-updater
-    fi
+    hash haskell-updater && haskell-updater
+    hash perl-cleaner    && perl-cleaner --all
 
-    if hash perl-cleaner
-    then
-        perl-cleaner --all
-    fi
-
-    emerge --backtrack=100 @preserved-rebuild
-    emerge -uDN --backtrack=100 world
+    emerge --backtrack=30 --with-bdeps=y @live-rebuild @module-rebuild @preserved-rebuild
+    emerge --backtrack=30 --with-bdeps=y -uDN $@ world
 fi
