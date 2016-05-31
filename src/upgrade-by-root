@@ -1,6 +1,6 @@
 #!/bin/zsh -x
 
-if emerge --backtrack=30 --with-bdeps=y -uDN $@ world
+if emerge -uDN $@ world
 then
 else
     revdep-rebuild
